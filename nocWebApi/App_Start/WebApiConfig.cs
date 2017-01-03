@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Http;
 
 
-namespace DpdWebApi
+namespace nocWebApi
 {
     public static class WebApiConfig
     {
