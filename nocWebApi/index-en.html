@@ -115,8 +115,8 @@
                     <tbody>
                         <tr>
                             <td>Brand - English</td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/brand/?type=json">JSON</a></td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/brand/?type=xml">XML</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/brand/?type=json&lang=eng">JSON</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/brand/?type=xml&lang=eng">XML</a></td>
                         </tr>
                         <tr>
                             <td>Product - English</td>
@@ -124,14 +124,24 @@
                             <td class="text-center"><a class="btn btn-default" href="./api/product/?type=xml">XML</a></td>
                         </tr>
                         <tr>
-                            <td>Product Route - English</td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/productroute/?type=json">JSON</a></td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/productroute/?type=xml">XML</a></td>
+                            <td>Product Form - English</td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productform/?type=json&lang=eng">JSON</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productform/?type=xml&lang=eng">XML</a></td>
                         </tr>
                         <tr>
-                            <td>Product Form - English</td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/productform/?type=json">JSON</a></td>
-                            <td class="text-center"><a class="btn btn-default" href="./api/productform/?type=xml">XML</a></td>
+                            <td>Product Ingredient - English</td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productingredient/?type=json&lang=eng">JSON</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productingredient/?type=xml&lang=eng">XML</a></td>
+                        </tr>
+                        <tr>
+                            <td>Product Route - English</td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productroute/?type=json&lang=eng">JSON</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/productroute/?type=xml&lang=eng">XML</a></td>
+                        </tr>
+                        <tr>
+                            <td>Veterinary Species - English</td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/vetspecies/?type=json&lang=eng">JSON</a></td>
+                            <td class="text-center"><a class="btn btn-default" href="./api/vetspecies/?type=xml&lang=eng">XML</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -155,7 +165,7 @@
         var defPreFooter = document.getElementById("def-preFooter");
         defPreFooter.outerHTML = wet.builder.preFooter({
             cdnEnv: "prod",
-            dateModified: "2016-10-19",
+            dateModified: "2017-01-04",
             showPostContent: true,
             showShare: true,
         });

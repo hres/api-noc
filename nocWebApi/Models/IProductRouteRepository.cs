@@ -4,7 +4,7 @@ namespace nocWebApi.Models
 {
     interface IProductRouteRepository
     {
-        IEnumerable<ProductRoute> GetAll();
-        ProductRoute Get(int id);
+        IEnumerable<ProductRoute> GetAll(string lang);
+        ProductRoute Get(int id, string lang);
     }
 }

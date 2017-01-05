@@ -8,19 +8,21 @@ namespace nocWebApi.Models
        
         private List<ProductRoute> routes = new List<ProductRoute>();
         private ProductRoute route = new ProductRoute();
-        DBConnection dbConnection = new DBConnection("en");
+       
 
 
-    public IEnumerable<ProductRoute> GetAll()
+    public IEnumerable<ProductRoute> GetAll(string lang)
     {
-        routes = dbConnection.GetAllProductRoute();
+            DBConnection dbConnection = new DBConnection(lang);
+            routes = dbConnection.GetAllProductRoute();
 
         return routes;
     }
 
 
-    public ProductRoute Get(int id)
+    public ProductRoute Get(int id, string lang)
     {
+            DBConnection dbConnection = new DBConnection(lang);
             route = dbConnection.GetProductRouteById(id);
         return route;
     }

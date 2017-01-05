@@ -9,8 +9,6 @@ namespace nocWebApi.Models
     {
         public int noc_number { get; set; }
         public int noc_pf_din_product_id { get; set; }
-        public string noc_pf_form_eng_name { get; set; }
-        public string noc_pf_form_fr_name { get; set; }
-
+        public string noc_pf_form_name { get; set; }
     }
 }

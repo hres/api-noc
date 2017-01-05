@@ -5,20 +5,20 @@ using System.Web.Http;
 
 namespace nocWebApi.Controllers
 {
-    public class ProductFormController : ApiController
+    public class VetSpeciesController : ApiController
     {
-        static readonly IProductFormRepository databasePlaceholder = new ProductFormRepository();
+        static readonly IVetSpeciesRepository databasePlaceholder = new VetSpeciesRepository();
 
-        public IEnumerable<ProductForm> GetAllProductForm(string lang)
+        public IEnumerable<VetSpecies> GetAllVetSpecies(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ProductForm GetProductFormByID(int id, string lang)
+        public VetSpecies GetVetSpeciesById(int id, string lang)
         {
-            ProductForm form = databasePlaceholder.Get(id, lang);
+            VetSpecies form = databasePlaceholder.Get(id, lang);
             if (form == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

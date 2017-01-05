@@ -5,20 +5,20 @@ using System.Web.Http;
 
 namespace nocWebApi.Controllers
 {
-    public class ProductRouteController : ApiController
+    public class ProductIngredientController : ApiController
     {
-        static readonly IProductRouteRepository databasePlaceholder = new ProductRouteRepository();
+        static readonly IProductIngredientRepository databasePlaceholder = new ProductIngredientRepository();
 
-        public IEnumerable<ProductRoute> GetAllProductRoute(string lang)
+        public IEnumerable<ProductIngredient> GetAllProductIngredient(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ProductRoute GetProductRouteById(int id, string lang)
+        public ProductIngredient GetProductIngredientById(int id, string lang)
         {
-            ProductRoute route = databasePlaceholder.Get(id, lang);
+            ProductIngredient route = databasePlaceholder.Get(id, lang);
             if (route == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

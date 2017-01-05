@@ -4,7 +4,7 @@ namespace nocWebApi.Models
 {
     interface IProductFormRepository
     {
-        IEnumerable<ProductForm> GetAll();
-        ProductForm Get(int id);
+        IEnumerable<ProductForm> GetAll(string lang);
+        ProductForm Get(int id, string lang);
     }
 }

@@ -5,11 +5,10 @@ using System.Web;
 
 namespace nocWebApi.Models
 {
-    public class ProductRoute
+    public class VetSpecies
     {
         public int noc_number { get; set; }
-        public int noc_pr_din_product_id { get; set; }
-        public string noc_pr_route { get; set; }
-       
+        public string vet_species_desc { get; set; }
+
     }
 }
