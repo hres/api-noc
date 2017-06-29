@@ -205,6 +205,7 @@
     <Compile Include="Areas\HelpPage\IModelDocumentationProvider.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CSVController.cs" />
     <Compile Include="Controllers\NoticeOfComplianceMainController.cs" />
     <Compile Include="Controllers\ProductIngredientController.cs" />
     <Compile Include="Controllers\VetSpeciesController.cs" />
