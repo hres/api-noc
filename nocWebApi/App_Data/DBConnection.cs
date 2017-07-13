@@ -505,7 +505,8 @@ namespace notice
         {
             var items = new List<ProductIngredient>();
 
-            string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
+            //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
+            string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
 
             if (this.Lang.Equals("fr"))
             {
@@ -535,7 +536,7 @@ namespace notice
                                 item.noc_pi_strength             = dr["NOC_PI_STRENGTH"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_STRENGTH"]);
                                 item.noc_pi_unit                 = dr["NOC_PI_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_UNIT"].ToString().Trim();
                                 item.noc_pi_basic_unit           = dr["NOC_PI_BASIC_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASIC_UNIT"].ToString().Trim();
-                                item.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
+                                //item.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -559,7 +560,8 @@ namespace notice
         public ProductIngredient GetProductIngredientById(int id)
         {
             var form = new ProductIngredient();
-           string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
+            //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
+            string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
 
             if (this.Lang.Equals("fr"))
             {
@@ -589,7 +591,7 @@ namespace notice
                                 form.noc_pi_strength             = dr["NOC_PI_STRENGTH"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_STRENGTH"]);
                                 form.noc_pi_unit                 = dr["NOC_PI_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_UNIT"].ToString().Trim();
                                 form.noc_pi_basic_unit           = dr["NOC_PI_BASIC_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASIC_UNIT"].ToString().Trim();
-                                form.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
+                                //form.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
                             }
                         }
                     }
@@ -613,6 +615,7 @@ namespace notice
             var items = new List<NoticeOfComplianceMain>();
 
             string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_SUBMISSION_NUMBER, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_FILE_NUMBER, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_SCANNED_PAGE, NOC_NOTES_ENTRY_DATE, NOC_LAST_UPDATE_DATE, NOC_ENTRY_DATE, ";
+            //string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_LAST_UPDATE_DATE, ";
 
             if (this.Lang.Equals("fr"))
             {
@@ -624,8 +627,8 @@ namespace notice
                 commandText += "NOC_FR_SUBMISSION_CLASS AS NOC_SUBMISSION_CLASS, ";
                 commandText += "NOC_FR_PRODUCT_TYPE AS NOC_PRODUCT_TYPE, ";
                 commandText += "NOC_FR_REASON_SUPPLEMENT AS NOC_REASON_SUPPLEMENT, ";
-                commandText += "NOC_FR_REASON_SUBMISSION AS NOC_REASON_SUBMISSION, ";
-                commandText += "NOC_FR_THERAPEUTIC_CLASS AS NOC_THERAPEUTIC_CLASS, ";
+                commandText += "NOC_FR_REASSUBMISSION AS NOC_REASON_SUBMISSION, ";
+                commandText += "NOC_FR_THERAPON_EUTIC_CLASS AS NOC_THERAPEUTIC_CLASS, ";
                 commandText += "NOC_FR_NOTES AS NOC_NOTES, ";
                 commandText += "NOC_SBD_FRENCH_FNAME AS NOC_SBD_FNAME, ";
                 commandText += "NOC_ND_FRENCH_FNAME AS NOC_ND_FNAME,";
@@ -665,40 +668,40 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                // 
+                                //
                                 //
                                 // 20170124 BARRYM Below is the corrected SQL query.
                                 var item = new NoticeOfComplianceMain();
                                 item.noc_number                 = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 item.noc_date                   = dr["NOC_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_DATE"]);
-                                item.noc_submission_number      = dr["NOC_SUBMISSION_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_NUMBER"].ToString().Trim();
+                                //item.noc_submission_number      = dr["NOC_SUBMISSION_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_NUMBER"].ToString().Trim();
                                 item.noc_manufacturer_name      = dr["NOC_MANUFACTURER_NAME"] == DBNull.Value ? string.Empty : dr["NOC_MANUFACTURER_NAME"].ToString().Trim();
                                 item.noc_status_with_conditions = dr["NOC_STATUS_WITH_CONDITIONS"] == DBNull.Value ? string.Empty : dr["NOC_STATUS_WITH_CONDITIONS"].ToString().Trim();
-                                item.noc_qn_fname               = dr["NOC_QN_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_QN_FNAME"].ToString().Trim();        
+                                //item.noc_qn_fname               = dr["NOC_QN_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_QN_FNAME"].ToString().Trim();        
                                 item.noc_crp_country_name       = dr["NOC_CRP_COUNTRY_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_COUNTRY_NAME"].ToString().Trim();
-                                item.noc_dhcpl_fname            = dr["NOC_DHCPL_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_DHCPL_FNAME"].ToString().Trim();
-                                item.noc_factsheet_fname        = dr["NOC_FACTSHEET_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_FACTSHEET_FNAME"].ToString().Trim();
+                                //item.noc_dhcpl_fname            = dr["NOC_DHCPL_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_DHCPL_FNAME"].ToString().Trim();
+                                //item.noc_factsheet_fname        = dr["NOC_FACTSHEET_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_FACTSHEET_FNAME"].ToString().Trim();
                                 item.noc_on_submission_type     = dr["NOC_ON_SUBMISSION_TYPE"] == DBNull.Value ? string.Empty : dr["NOC_ON_SUBMISSION_TYPE"].ToString().Trim();
                                 item.noc_is_suppliment          = dr["NOC_IS_SUPPLIMENT"] == DBNull.Value ? string.Empty : dr["NOC_IS_SUPPLIMENT"].ToString().Trim();
                                 item.noc_submission_class       = dr["NOC_SUBMISSION_CLASS"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_CLASS"].ToString().Trim();
                                 item.noc_is_admin               = dr["NOC_IS_ADMIN"] == DBNull.Value ? string.Empty : dr["NOC_IS_ADMIN"].ToString().Trim();
                                 item.noc_product_type           = dr["NOC_PRODUCT_TYPE"] == DBNull.Value ? string.Empty : dr["NOC_PRODUCT_TYPE"].ToString().Trim();
-                                item.noc_file_number            = dr["NOC_FILE_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_FILE_NUMBER"].ToString().Trim();
+                                //item.noc_file_number            = dr["NOC_FILE_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_FILE_NUMBER"].ToString().Trim();
                                 item.noc_crp_product_name       = dr["NOC_CRP_PRODUCT_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_PRODUCT_NAME"].ToString().Trim();
                                 item.noc_crp_company_name       = dr["NOC_CRP_COMPANY_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_COMPANY_NAME"].ToString().Trim();
                                 item.noc_active_status          = dr["NOC_ACTIVE_STATUS"] == DBNull.Value ? string.Empty : dr["NOC_ACTIVE_STATUS"].ToString().Trim();
-                                item.noc_scanned_page           = dr["NOC_SCANNED_PAGE"] == DBNull.Value ? string.Empty : dr["NOC_SCANNED_PAGE"].ToString().Trim();
+                                //item.noc_scanned_page           = dr["NOC_SCANNED_PAGE"] == DBNull.Value ? string.Empty : dr["NOC_SCANNED_PAGE"].ToString().Trim();
                                 item.noc_reason_supplement      = dr["NOC_REASON_SUPPLEMENT"] == DBNull.Value ? string.Empty : dr["NOC_REASON_SUPPLEMENT"].ToString().Trim();
                                 item.noc_reason_submission      = dr["NOC_REASON_SUBMISSION"] == DBNull.Value ? string.Empty : dr["NOC_REASON_SUBMISSION"].ToString().Trim();
                                 item.noc_therapeutic_class      = dr["NOC_THERAPEUTIC_CLASS"] == DBNull.Value ? string.Empty : dr["NOC_THERAPEUTIC_CLASS"].ToString().Trim();
-                                item.noc_notes                  = dr["NOC_NOTES"] == DBNull.Value ? string.Empty : dr["NOC_NOTES"].ToString().Trim();
-                                item.noc_notes_entry_date       = dr["NOC_NOTES_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_NOTES_ENTRY_DATE"]);
+                                //item.noc_notes                  = dr["NOC_NOTES"] == DBNull.Value ? string.Empty : dr["NOC_NOTES"].ToString().Trim();
+                                //item.noc_notes_entry_date       = dr["NOC_NOTES_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_NOTES_ENTRY_DATE"]);
                                 item.noc_last_update_date       = dr["NOC_LAST_UPDATE_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_LAST_UPDATE_DATE"]);
-                                item.noc_entry_date             = dr["NOC_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_ENTRY_DATE"]);
-                                item.noc_sbd_fname              = dr["NOC_SBD_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_SBD_FNAME"].ToString().Trim();
-                                item.noc_nd_fname               = dr["NOC_ND_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_ND_FNAME"].ToString().Trim();
-                                item.noc_ci_part_iii_fname      = dr["NOC_CI_PART_III_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_CI_PART_III_FNAME"].ToString().Trim();
-                                item.noc_pm_fname               = dr["NOC_PM_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_PM_FNAME"].ToString().Trim();
+                                //item.noc_entry_date             = dr["NOC_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_ENTRY_DATE"]);
+                                //item.noc_sbd_fname              = dr["NOC_SBD_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_SBD_FNAME"].ToString().Trim();
+                                //item.noc_nd_fname               = dr["NOC_ND_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_ND_FNAME"].ToString().Trim();
+                                //item.noc_ci_part_iii_fname      = dr["NOC_CI_PART_III_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_CI_PART_III_FNAME"].ToString().Trim();
+                                //item.noc_pm_fname               = dr["NOC_PM_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_PM_FNAME"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -721,7 +724,8 @@ namespace notice
         public NoticeOfComplianceMain GetNoticeOfComplianceMainById(int id)
         {
             var form = new NoticeOfComplianceMain();
-            string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_SUBMISSION_NUMBER, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_FILE_NUMBER, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_SCANNED_PAGE, NOC_NOTES_ENTRY_DATE, NOC_LAST_UPDATE_DATE, NOC_ENTRY_DATE, ";
+            //string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_SUBMISSION_NUMBER, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_FILE_NUMBER, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_SCANNED_PAGE, NOC_NOTES_ENTRY_DATE, NOC_LAST_UPDATE_DATE, NOC_ENTRY_DATE, ";
+            string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_LAST_UPDATE_DATE, ";
 
             if (this.Lang.Equals("fr"))
             {
@@ -740,6 +744,7 @@ namespace notice
                 commandText += "NOC_ND_FRENCH_FNAME AS NOC_ND_FNAME,";
                 commandText += "NOC_CI_PART_III_FRENCH_FNAME AS NOC_CI_PART_III_FNAME, ";
                 commandText += "NOC_PM_FRENCH_FNAME AS NOC_PM_FNAME";
+
 
                 //DEBUGGED CODE 20170123 Above and below.
             }
@@ -776,34 +781,34 @@ namespace notice
                             {
                                 form.noc_number = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 form.noc_date = dr["NOC_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_DATE"]);
-                                form.noc_submission_number = dr["NOC_SUBMISSION_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_NUMBER"].ToString().Trim();
+                                //form.noc_submission_number = dr["NOC_SUBMISSION_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_NUMBER"].ToString().Trim();
                                 form.noc_manufacturer_name = dr["NOC_MANUFACTURER_NAME"] == DBNull.Value ? string.Empty : dr["NOC_MANUFACTURER_NAME"].ToString().Trim();
                                 form.noc_status_with_conditions = dr["NOC_STATUS_WITH_CONDITIONS"] == DBNull.Value ? string.Empty : dr["NOC_STATUS_WITH_CONDITIONS"].ToString().Trim();
-                                form.noc_qn_fname = dr["NOC_QN_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_QN_FNAME"].ToString().Trim();
+                                //form.noc_qn_fname = dr["NOC_QN_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_QN_FNAME"].ToString().Trim();
                                 form.noc_crp_country_name = dr["NOC_CRP_COUNTRY_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_COUNTRY_NAME"].ToString().Trim();
-                                form.noc_dhcpl_fname = dr["NOC_DHCPL_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_DHCPL_FNAME"].ToString().Trim();
-                                form.noc_factsheet_fname = dr["NOC_FACTSHEET_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_FACTSHEET_FNAME"].ToString().Trim();
+                                //form.noc_dhcpl_fname = dr["NOC_DHCPL_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_DHCPL_FNAME"].ToString().Trim();
+                                //form.noc_factsheet_fname = dr["NOC_FACTSHEET_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_FACTSHEET_FNAME"].ToString().Trim();
                                 form.noc_on_submission_type = dr["NOC_ON_SUBMISSION_TYPE"] == DBNull.Value ? string.Empty : dr["NOC_ON_SUBMISSION_TYPE"].ToString().Trim();
                                 form.noc_is_suppliment = dr["NOC_IS_SUPPLIMENT"] == DBNull.Value ? string.Empty : dr["NOC_IS_SUPPLIMENT"].ToString().Trim();
                                 form.noc_submission_class = dr["NOC_SUBMISSION_CLASS"] == DBNull.Value ? string.Empty : dr["NOC_SUBMISSION_CLASS"].ToString().Trim();
                                 form.noc_is_admin = dr["NOC_IS_ADMIN"] == DBNull.Value ? string.Empty : dr["NOC_IS_ADMIN"].ToString().Trim();
                                 form.noc_product_type = dr["NOC_PRODUCT_TYPE"] == DBNull.Value ? string.Empty : dr["NOC_PRODUCT_TYPE"].ToString().Trim();
-                                form.noc_file_number = dr["NOC_FILE_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_FILE_NUMBER"].ToString().Trim();
+                                //form.noc_file_number = dr["NOC_FILE_NUMBER"] == DBNull.Value ? string.Empty : dr["NOC_FILE_NUMBER"].ToString().Trim();
                                 form.noc_crp_product_name = dr["NOC_CRP_PRODUCT_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_PRODUCT_NAME"].ToString().Trim();
                                 form.noc_crp_company_name = dr["NOC_CRP_COMPANY_NAME"] == DBNull.Value ? string.Empty : dr["NOC_CRP_COMPANY_NAME"].ToString().Trim();
                                 form.noc_active_status = dr["NOC_ACTIVE_STATUS"] == DBNull.Value ? string.Empty : dr["NOC_ACTIVE_STATUS"].ToString().Trim();
-                                form.noc_scanned_page = dr["NOC_SCANNED_PAGE"] == DBNull.Value ? string.Empty : dr["NOC_SCANNED_PAGE"].ToString().Trim();
+                                //form.noc_scanned_page = dr["NOC_SCANNED_PAGE"] == DBNull.Value ? string.Empty : dr["NOC_SCANNED_PAGE"].ToString().Trim();
                                 form.noc_reason_supplement = dr["NOC_REASON_SUPPLEMENT"] == DBNull.Value ? string.Empty : dr["NOC_REASON_SUPPLEMENT"].ToString().Trim();
                                 form.noc_reason_submission = dr["NOC_REASON_SUBMISSION"] == DBNull.Value ? string.Empty : dr["NOC_REASON_SUBMISSION"].ToString().Trim();
                                 form.noc_therapeutic_class = dr["NOC_THERAPEUTIC_CLASS"] == DBNull.Value ? string.Empty : dr["NOC_THERAPEUTIC_CLASS"].ToString().Trim();
-                                form.noc_notes = dr["NOC_NOTES"] == DBNull.Value ? string.Empty : dr["NOC_NOTES"].ToString().Trim();
-                                form.noc_notes_entry_date = dr["NOC_NOTES_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_NOTES_ENTRY_DATE"]);
+                                //form.noc_notes = dr["NOC_NOTES"] == DBNull.Value ? string.Empty : dr["NOC_NOTES"].ToString().Trim();
+                                //form.noc_notes_entry_date = dr["NOC_NOTES_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_NOTES_ENTRY_DATE"]);
                                 form.noc_last_update_date = dr["NOC_LAST_UPDATE_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_LAST_UPDATE_DATE"]);
-                                form.noc_entry_date = dr["NOC_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_ENTRY_DATE"]);
-                                form.noc_sbd_fname = dr["NOC_SBD_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_SBD_FNAME"].ToString().Trim();
-                                form.noc_nd_fname = dr["NOC_ND_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_ND_FNAME"].ToString().Trim();
-                                form.noc_ci_part_iii_fname = dr["NOC_CI_PART_III_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_CI_PART_III_FNAME"].ToString().Trim();
-                                form.noc_pm_fname = dr["NOC_PM_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_PM_FNAME"].ToString().Trim();
+                                //form.noc_entry_date = dr["NOC_ENTRY_DATE"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["NOC_ENTRY_DATE"]);
+                                //form.noc_sbd_fname = dr["NOC_SBD_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_SBD_FNAME"].ToString().Trim();
+                                //form.noc_nd_fname = dr["NOC_ND_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_ND_FNAME"].ToString().Trim();
+                                //form.noc_ci_part_iii_fname = dr["NOC_CI_PART_III_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_CI_PART_III_FNAME"].ToString().Trim();
+                                //form.noc_pm_fname = dr["NOC_PM_FNAME"] == DBNull.Value ? string.Empty : dr["NOC_PM_FNAME"].ToString().Trim();
                             }
                         }
                     }

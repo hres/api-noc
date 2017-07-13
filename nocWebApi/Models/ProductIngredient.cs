@@ -13,6 +13,5 @@ namespace nocWebApi.Models
         public int noc_pi_strength { get; set; }
         public string noc_pi_unit { get; set; }
         public string noc_pi_basic_unit { get; set; }
-        public string noc_pi_base { get; set; }
     }
 }
