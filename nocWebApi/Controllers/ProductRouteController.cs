@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Linq;
 
 namespace nocWebApi.Controllers
 {
@@ -9,21 +10,21 @@ namespace nocWebApi.Controllers
     {
         static readonly IProductRouteRepository databasePlaceholder = new ProductRouteRepository();
 
-        public IEnumerable<ProductRoute> GetAllProductRoute(string lang)
+        public IEnumerable<ProductRoute> GetAllProductRoute(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ProductRoute GetProductRouteById(int id, string lang)
+        public IEnumerable<ProductRoute> GetProductRouteById(int id, string lang="en")
         {
-            ProductRoute route = databasePlaceholder.Get(id, lang);
-            if (route == null)
+            IEnumerable<ProductRoute> routeList = databasePlaceholder.Get(id, lang);
+            if (routeList.Count() == 0)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return route;
+            return routeList;
         }
     }
 }

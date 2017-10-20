@@ -19,10 +19,10 @@ namespace nocWebApi.Models
     }
 
 
-    public Product Get(int id)
+    public IEnumerable<Product> Get(int id)
     {
-        product = dbConnection.GetProductById(id);
-        return product;
+        products = dbConnection.GetProductById(id);
+        return products;
     }
 
 

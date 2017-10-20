@@ -5,6 +5,6 @@ namespace nocWebApi.Models
     interface IProductRepository
     {
         IEnumerable<Product> GetAll();
-        Product Get(int id);
+        IEnumerable<Product> Get(int id);
     }
 }

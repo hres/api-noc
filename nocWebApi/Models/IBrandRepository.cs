@@ -5,6 +5,6 @@ namespace nocWebApi.Models
     interface IBrandRepository
     {
         IEnumerable<Brand> GetAll();
-        Brand Get(int id);
+        IEnumerable<Brand> Get(int id);
     }
 }

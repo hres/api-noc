@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Linq;
 
 namespace nocWebApi.Controllers
 {
@@ -16,14 +17,15 @@ namespace nocWebApi.Controllers
         }
 
 
-        public Product GetProductByID(int id)
+        public IEnumerable<Product> GetProductByID(int id)
         {
-            Product product = databasePlaceholder.Get(id);
-            if (product == null)
+            //Product product = databasePlaceholder.Get(id);
+            IEnumerable < Product > productList = databasePlaceholder.Get(id);
+            if (productList.Count()== 0)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return product;
+            return productList;
         }
     }
 }

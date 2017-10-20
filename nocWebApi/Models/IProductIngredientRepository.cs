@@ -5,6 +5,6 @@ namespace nocWebApi.Models
     interface IProductIngredientRepository
     {
         IEnumerable<ProductIngredient> GetAll(string lang);
-        ProductIngredient Get(int id, string lang);
+        IEnumerable<ProductIngredient> Get(int id, string lang);
     }
 }

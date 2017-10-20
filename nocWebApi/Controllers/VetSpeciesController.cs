@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Linq;
 
 namespace nocWebApi.Controllers
 {
@@ -9,21 +10,21 @@ namespace nocWebApi.Controllers
     {
         static readonly IVetSpeciesRepository databasePlaceholder = new VetSpeciesRepository();
 
-        public IEnumerable<VetSpecies> GetAllVetSpecies(string lang)
+        public IEnumerable<VetSpecies> GetAllVetSpecies(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public VetSpecies GetVetSpeciesById(int id, string lang)
+        public IEnumerable<VetSpecies> GetVetSpeciesById(int id, string lang="en")
         {
-            VetSpecies form = databasePlaceholder.Get(id, lang);
-            if (form == null)
+            IEnumerable<VetSpecies> formList = databasePlaceholder.Get(id, lang);
+            if (formList.Count() == 0)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return form;
+            return formList;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
+using System.Linq;
 
 namespace nocWebApi.Controllers
 {
@@ -9,21 +10,21 @@ namespace nocWebApi.Controllers
     {
         static readonly IProductFormRepository databasePlaceholder = new ProductFormRepository();
 
-        public IEnumerable<ProductForm> GetAllProductForm(string lang)
+        public IEnumerable<ProductForm> GetAllProductForm(string lang="en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ProductForm GetProductFormByID(int id, string lang)
+        public IEnumerable<ProductForm> GetProductFormByID(int id, string lang = "en")
         {
-            ProductForm form = databasePlaceholder.Get(id, lang);
-            if (form == null)
+            IEnumerable<ProductForm> formList = databasePlaceholder.Get(id, lang);
+            if (formList.Count()==0)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return form;
+            return formList;
         }
     }
 }

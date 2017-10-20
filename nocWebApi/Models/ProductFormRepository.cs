@@ -20,11 +20,11 @@ namespace nocWebApi.Models
     }
 
 
-    public ProductForm Get(int id, string lang)
+    public IEnumerable<ProductForm> Get(int id, string lang)
     {
             DBConnection dbConnection = new DBConnection(lang);
-            form = dbConnection.GetProductFormById(id);
-        return form;
+            forms = dbConnection.GetProductFormById(id);
+        return forms;
     }
 
 

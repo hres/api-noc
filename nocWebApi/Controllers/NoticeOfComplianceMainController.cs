@@ -9,14 +9,14 @@ namespace nocWebApi.Controllers
     {
         static readonly INoticeOfComplianceMainRepository databasePlaceholder = new NoticeOfComplianceMainRepository();
 
-        public IEnumerable<NoticeOfComplianceMain> GetAllNoticeOfComplianceMain(string lang)
+        public IEnumerable<NoticeOfComplianceMain> GetAllNoticeOfComplianceMain(string lang="")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public NoticeOfComplianceMain GetNoticeOfComplianceMainById(int id, string lang)
+        public NoticeOfComplianceMain GetNoticeOfComplianceMainById(int id, string lang="")
         {
             NoticeOfComplianceMain route = databasePlaceholder.Get(id, lang);
             if (route == null)

@@ -19,11 +19,11 @@ namespace nocWebApi.Models
     }
 
 
-    public ProductIngredient Get(int id, string lang)
+    public IEnumerable<ProductIngredient> Get(int id, string lang)
     {
             DBConnection dbConnection = new DBConnection(lang);
-            ingredient = dbConnection.GetProductIngredientById(id);
-        return ingredient;
+            ingredients = dbConnection.GetProductIngredientById(id);
+        return ingredients;
     }
 
 

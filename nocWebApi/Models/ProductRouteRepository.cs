@@ -20,11 +20,11 @@ namespace nocWebApi.Models
     }
 
 
-    public ProductRoute Get(int id, string lang)
+    public IEnumerable<ProductRoute> Get(int id, string lang)
     {
             DBConnection dbConnection = new DBConnection(lang);
-            route = dbConnection.GetProductRouteById(id);
-        return route;
+            routes = dbConnection.GetProductRouteById(id);
+            return routes;
     }
 
 

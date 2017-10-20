@@ -19,10 +19,10 @@ namespace nocWebApi.Models
     }
 
 
-    public Brand Get(int id)
+    public IEnumerable<Brand> Get(int id)
     {
-        brand = dbConnection.GetBrandById(id);
-        return brand;
+        brands = dbConnection.GetBrandById(id);
+        return brands;
     }
 
 

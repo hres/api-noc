@@ -19,11 +19,11 @@ namespace nocWebApi.Models
     }
 
 
-    public VetSpecies Get(int id, string lang)
+    public IEnumerable<VetSpecies> Get(int id, string lang)
     {
             DBConnection dbConnection = new DBConnection(lang);
-            form = dbConnection.GetVetSpeciesById(id);
-        return form;
+            forms = dbConnection.GetVetSpeciesById(id);
+        return forms;
     }
 
 
