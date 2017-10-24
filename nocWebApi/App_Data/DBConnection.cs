@@ -800,6 +800,7 @@ namespace notice
                 commandText += "NOC_PM_ENGLISH_FNAME AS NOC_PM_FNAME";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_MAIN";
+            commandText += " WHERE NOC_NUMBER = " + id;
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
