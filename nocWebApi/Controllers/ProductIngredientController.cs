@@ -21,10 +21,10 @@ namespace nocWebApi.Controllers
         {
             //ProductIngredient route = databasePlaceholder.Get(id, lang);
             IEnumerable<ProductIngredient> ingredientList = databasePlaceholder.Get(id, lang);
-            if (ingredientList.Count() == 0)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            //if (ingredientList.Count() == 0)
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+            //}
             return ingredientList;
         }
     }

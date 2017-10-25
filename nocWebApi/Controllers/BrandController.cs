@@ -21,10 +21,10 @@ namespace nocWebApi.Controllers
         {
             //Brand brand = databasePlaceholder.Get(id);
             IEnumerable <Brand> brandList= databasePlaceholder.Get(id);
-            if (brandList.Count() == 0)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            //if (brandList.Count() == 0)
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+            //}
             return brandList;
         }
     }

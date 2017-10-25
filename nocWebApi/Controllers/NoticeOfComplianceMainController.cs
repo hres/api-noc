@@ -19,10 +19,10 @@ namespace nocWebApi.Controllers
         public NoticeOfComplianceMain GetNoticeOfComplianceMainById(int id, string lang="")
         {
             NoticeOfComplianceMain route = databasePlaceholder.Get(id, lang);
-            if (route == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            //if (route == null)
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+            //}
             return route;
         }
     }

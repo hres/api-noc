@@ -20,10 +20,10 @@ namespace nocWebApi.Controllers
         public IEnumerable<ProductRoute> GetProductRouteById(int id, string lang="en")
         {
             IEnumerable<ProductRoute> routeList = databasePlaceholder.Get(id, lang);
-            if (routeList.Count() == 0)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            //if (routeList.Count() == 0)
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+            //}
             return routeList;
         }
     }

@@ -20,10 +20,10 @@ namespace nocWebApi.Controllers
         public IEnumerable<ProductForm> GetProductFormByID(int id, string lang = "en")
         {
             IEnumerable<ProductForm> formList = databasePlaceholder.Get(id, lang);
-            if (formList.Count()==0)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            //if (formList.Count()==0)
+            //{
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
+            //}
             return formList;
         }
     }
