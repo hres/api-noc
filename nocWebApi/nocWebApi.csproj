@@ -200,7 +200,6 @@
     <Compile Include="App_Data\UtilityHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\IModelDocumentationProvider.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions.cs" />
@@ -213,7 +212,6 @@
     <Compile Include="Controllers\ProductRouteController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -343,10 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Reference.cshtml" />
-    <Content Include="Views\Home\SearchDrugProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\nocWebApi.dll.config" />

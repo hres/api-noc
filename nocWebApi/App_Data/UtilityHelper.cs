@@ -1,16 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Web;
-using DpdWebApi.Models;
-using System.Text;
-using System.Data;
 using System.IO;
 
 namespace notice
