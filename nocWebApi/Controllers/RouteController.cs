@@ -6,20 +6,20 @@ using System.Linq;
 
 namespace nocWebApi.Controllers
 {
-    public class ProductRouteController : ApiController
+    public class RouteController : ApiController
     {
-        static readonly IProductRouteRepository databasePlaceholder = new ProductRouteRepository();
+        static readonly IRouteRepository databasePlaceholder = new RouteRepository();
 
-        public IEnumerable<ProductRoute> GetAllProductRoute(string lang = "en")
+        public IEnumerable<Route> GetAllRoute(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public IEnumerable<ProductRoute> GetProductRouteById(int id, string lang="en")
+        public IEnumerable<Route> GetRouteById(int id, string lang="en")
         {
-            IEnumerable<ProductRoute> routeList = databasePlaceholder.Get(id, lang);
+            IEnumerable<Route> routeList = databasePlaceholder.Get(id, lang);
             //if (routeList.Count() == 0)
             //{
             //    throw new HttpResponseException(HttpStatusCode.NotFound);

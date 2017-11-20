@@ -5,7 +5,7 @@ using System.Web;
 
 namespace nocWebApi.Models
 {
-    public class ProductForm
+    public class DosageForm
     {
         public int noc_number { get; set; }
         public int noc_pf_din_product_id { get; set; }

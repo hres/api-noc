@@ -6,20 +6,20 @@ using System.Linq;
 
 namespace nocWebApi.Controllers
 {
-    public class ProductFormController : ApiController
+    public class DosageFormController : ApiController
     {
-        static readonly IProductFormRepository databasePlaceholder = new ProductFormRepository();
+        static readonly IDosageFormRepository databasePlaceholder = new DosageFormRepository();
 
-        public IEnumerable<ProductForm> GetAllProductForm(string lang="en")
+        public IEnumerable<DosageForm> GetAllProductForm(string lang="en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public IEnumerable<ProductForm> GetProductFormByID(int id, string lang = "en")
+        public IEnumerable<DosageForm> GetProductFormByID(int id, string lang = "en")
         {
-            IEnumerable<ProductForm> formList = databasePlaceholder.Get(id, lang);
+            IEnumerable<DosageForm> formList = databasePlaceholder.Get(id, lang);
             //if (formList.Count()==0)
             //{
             //    throw new HttpResponseException(HttpStatusCode.NotFound);

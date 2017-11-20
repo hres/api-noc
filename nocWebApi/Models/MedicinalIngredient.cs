@@ -5,7 +5,7 @@ using System.Web;
 
 namespace nocWebApi.Models
 {
-    public class ProductIngredient
+    public class MedicinalIngredient
     {
         public int noc_number { get; set; }
         public int noc_pi_din_product_id { get; set; }

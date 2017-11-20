@@ -6,21 +6,21 @@ using System.Linq;
 
 namespace nocWebApi.Controllers
 {
-    public class ProductIngredientController : ApiController
+    public class MedicinalIngredientController : ApiController
     {
-        static readonly IProductIngredientRepository databasePlaceholder = new ProductIngredientRepository();
+        static readonly IMedicinalIngredientRepository databasePlaceholder = new MedicinalIngredientRepository();
 
-        public IEnumerable<ProductIngredient> GetAllProductIngredient(string lang="en")
+        public IEnumerable<MedicinalIngredient> GetAllMedicinalIngredient(string lang="en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public IEnumerable<ProductIngredient> GetProductIngredientById(int id, string lang="en")
+        public IEnumerable<MedicinalIngredient> GetMedicinalIngredientById(int id, string lang="en")
         {
             //ProductIngredient route = databasePlaceholder.Get(id, lang);
-            IEnumerable<ProductIngredient> ingredientList = databasePlaceholder.Get(id, lang);
+            IEnumerable<MedicinalIngredient> ingredientList = databasePlaceholder.Get(id, lang);
             //if (ingredientList.Count() == 0)
             //{
             //    throw new HttpResponseException(HttpStatusCode.NotFound);

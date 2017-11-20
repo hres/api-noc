@@ -32,10 +32,12 @@ namespace notice
 
 
 
-        public List<Brand> GetAllBrand()
+        public List<DrugProduct> GetAllDrugProduct()
         {
-            var items = new List<Brand>();
-            string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_BRAND";
+            var items = new List<DrugProduct>();
+            //string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_BRAND";
+            string commandText = "SELECT A.NOC_DP_DIN_PRODUCT_ID, A.NOC_DP_DIN, B.* FROM QRY_NOC_DIN_PRODUCT A, QRY_NOC_BRAND B";
+                   commandText+=" WHERE A.NOC_DP_BRAND_ID = B.NOC_BR_BRAND_ID AND A.NOC_NUMBER = B.NOC_NUMBER";
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
@@ -48,7 +50,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new Brand();
+                                var item = new DrugProduct();
                                 //if (lang.Equals("fr"))
                                 //{
                                 //    item.noc_number = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
@@ -61,9 +63,12 @@ namespace notice
                                     item.noc_number = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                     item.noc_br_brand_id = dr["NOC_BR_BRAND_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_BR_BRAND_ID"]);
                                     item.noc_br_brandname = dr["NOC_BR_BRANDNAME"] == DBNull.Value ? string.Empty : dr["NOC_BR_BRANDNAME"].ToString().Trim();
-                                //}
-                               
+                                    item.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
+                                    item.noc_br_din = dr["NOC_DP_DIN"] == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
                                 
+                                //}
+
+
                                 items.Add(item);
                             }
                         }
@@ -71,7 +76,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetAllBrand()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllDrugProduct()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -83,11 +88,14 @@ namespace notice
             return items;
         }
 
-        public List<Brand> GetBrandById(int id)
+        public List<DrugProduct> GetDrugProductById(int id)
         {
             //var brand = new Brand();
-            var items = new List<Brand>();
-            string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_BRAND WHERE NOC_NUMBER = " + id;
+            var items = new List<DrugProduct>();
+            //string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_BRAND WHERE NOC_NUMBER = " + id;
+            string commandText = "SELECT A.NOC_DP_DIN_PRODUCT_ID, A.NOC_DP_DIN, B.* FROM QRY_NOC_DIN_PRODUCT A, QRY_NOC_BRAND B";
+            commandText += " WHERE A.NOC_DP_BRAND_ID = B.NOC_BR_BRAND_ID AND A.NOC_NUMBER = B.NOC_NUMBER";
+            commandText += " AND B.NOC_NUMBER = " + id;
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
@@ -100,10 +108,12 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var brand = new Brand();
+                                var brand = new DrugProduct();
                                 brand.noc_number = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 brand.noc_br_brand_id = dr["NOC_BR_BRAND_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_BR_BRAND_ID"]);
                                 brand.noc_br_brandname = dr["NOC_BR_BRANDNAME"] == DBNull.Value ? string.Empty : dr["NOC_BR_BRANDNAME"].ToString().Trim();
+                                brand.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
+                                brand.noc_br_din = dr["NOC_DP_DIN"] == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
                                 items.Add(brand);
                              }
                         }
@@ -111,7 +121,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetBrandById()");
+                    string errorMessages = string.Format("DbConnection.cs - GetDrugProductById()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -126,94 +136,94 @@ namespace notice
 
 
     //BEGIN Product 20161221
-    public List<Product> GetAllProduct()
-    {
-        var items = new List<Product>();
-        string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_DIN_PRODUCT";
-        using (OracleConnection con = new OracleConnection(DpdDBConnection))
-        {
-            OracleCommand cmd = new OracleCommand(commandText, con);
-            try
-            {
-                con.Open();
-                using (OracleDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            var item = new Product();
-                            item.noc_number        = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
-                            item.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
-                            item.noc_br_brand_id   = dr["NOC_DP_BRAND_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_BRAND_ID"]);
-                            item.noc_br_din        = dr["NOC_DP_DIN"] == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
+    //public List<Product> GetAllProduct()
+    //{
+    //    var items = new List<Product>();
+    //    string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_DIN_PRODUCT";
+    //    using (OracleConnection con = new OracleConnection(DpdDBConnection))
+    //    {
+    //        OracleCommand cmd = new OracleCommand(commandText, con);
+    //        try
+    //        {
+    //            con.Open();
+    //            using (OracleDataReader dr = cmd.ExecuteReader())
+    //            {
+    //                if (dr.HasRows)
+    //                {
+    //                    while (dr.Read())
+    //                    {
+    //                        var item = new Product();
+    //                        item.noc_number        = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
+    //                        item.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
+    //                        item.noc_br_brand_id   = dr["NOC_DP_BRAND_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_BRAND_ID"]);
+    //                        item.noc_br_din        = dr["NOC_DP_DIN"] == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
 
-                            items.Add(item);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string errorMessages = string.Format("DbConnection.cs - GetAllProduct()");
-                ExceptionHelper.LogException(ex, errorMessages);
-            }
-            finally
-            {
-                if (con.State == ConnectionState.Open)
-                    con.Close();
-            }
-        }
-        return items;
-     }
+    //                        items.Add(item);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            string errorMessages = string.Format("DbConnection.cs - GetAllProduct()");
+    //            ExceptionHelper.LogException(ex, errorMessages);
+    //        }
+    //        finally
+    //        {
+    //            if (con.State == ConnectionState.Open)
+    //                con.Close();
+    //        }
+    //    }
+    //    return items;
+    // }
 
-    public List<Product> GetProductById(int id)
-        {
-            //var product = new Product();
-            var items = new List<Product>();
-            string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_DIN_PRODUCT WHERE NOC_NUMBER = " + id;
-            using (OracleConnection con = new OracleConnection(DpdDBConnection))
-            {
-                OracleCommand cmd = new OracleCommand(commandText, con);
-                try
-                {
-                    con.Open();
-                    using (OracleDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.HasRows)
-                        {
-                            while (dr.Read())
-                            {
-                                var product = new Product();
-                                product.noc_number = dr["NOC_NUMBER"]               == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
-                                product.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
-                                product.noc_br_brand_id = dr["NOC_DP_BRAND_ID"]     == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_BRAND_ID"]);
-                                product.noc_br_din = dr["NOC_DP_DIN"]               == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
-                                items.Add(product);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string errorMessages = string.Format("DbConnection.cs - GetProductById()");
-                    ExceptionHelper.LogException(ex, errorMessages);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-                }
-            }
-            return items;
-        }// END Product
+    //public List<Product> GetProductById(int id)
+    //    {
+    //        //var product = new Product();
+    //        var items = new List<Product>();
+    //        string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_DIN_PRODUCT WHERE NOC_NUMBER = " + id;
+    //        using (OracleConnection con = new OracleConnection(DpdDBConnection))
+    //        {
+    //            OracleCommand cmd = new OracleCommand(commandText, con);
+    //            try
+    //            {
+    //                con.Open();
+    //                using (OracleDataReader dr = cmd.ExecuteReader())
+    //                {
+    //                    if (dr.HasRows)
+    //                    {
+    //                        while (dr.Read())
+    //                        {
+    //                            var product = new Product();
+    //                            product.noc_number = dr["NOC_NUMBER"]               == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
+    //                            product.noc_br_product_id = dr["NOC_DP_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_DIN_PRODUCT_ID"]);
+    //                            product.noc_br_brand_id = dr["NOC_DP_BRAND_ID"]     == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_DP_BRAND_ID"]);
+    //                            product.noc_br_din = dr["NOC_DP_DIN"]               == DBNull.Value ? string.Empty : dr["NOC_DP_DIN"].ToString().Trim();
+    //                            items.Add(product);
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                string errorMessages = string.Format("DbConnection.cs - GetProductById()");
+    //                ExceptionHelper.LogException(ex, errorMessages);
+    //            }
+    //            finally
+    //            {
+    //                if (con.State == ConnectionState.Open)
+    //                    con.Close();
+    //            }
+    //        }
+    //        return items;
+    //    }// END Product
 
 
 
         // BEGIN ProductRoute
-        public List<ProductRoute> GetAllProductRoute()
+        public List<Route> GetAllRoute()
         {
-            var items = new List<ProductRoute>();
+            var items = new List<Route>();
             string commandText = "SELECT NOC_NUMBER, NOC_PR_DIN_PRODUCT_ID, ";
 
             if (this.Lang.Equals("fr"))
@@ -238,7 +248,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new ProductRoute();
+                                var item = new Route();
                                 item.noc_number            = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 item.noc_pr_din_product_id = dr["NOC_PR_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PR_DIN_PRODUCT_ID"]);
                                 item.noc_pr_route          = dr["NOC_PR_ROUTE"] == DBNull.Value ? string.Empty : dr["NOC_PR_ROUTE"].ToString().Trim();
@@ -250,7 +260,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetAllProductRoute()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllRoute()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -262,10 +272,10 @@ namespace notice
             return items;
         }
 
-        public List<ProductRoute> GetProductRouteById(int id)
+        public List<Route> GetRouteById(int id)
         {
             
-            var items = new List<ProductRoute>();
+            var items = new List<Route>();
             //ORIGINAL - string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_PRODUCT_ROUTE WHERE NOC_DP_DIN_PRODUCT_ID = " + id;
             string commandText = "SELECT NOC_NUMBER, NOC_PR_DIN_PRODUCT_ID, ";
 
@@ -291,7 +301,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var route = new ProductRoute();
+                                var route = new Route();
                                 route.noc_number            = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 route.noc_pr_din_product_id = dr["NOC_PR_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PR_DIN_PRODUCT_ID"]);
                                 route.noc_pr_route          = dr["NOC_PR_ROUTE"] == DBNull.Value ? string.Empty : dr["NOC_PR_ROUTE"].ToString().Trim();
@@ -303,7 +313,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetProductById()");
+                    string errorMessages = string.Format("DbConnection.cs - GetRouteById()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -319,9 +329,9 @@ namespace notice
         // END of ProductRoute.
 
         // BEGIN of ProductForm
-        public List<ProductForm> GetAllProductForm()
+        public List<DosageForm> GetAllDosageForm()
         {
-            var items = new List<ProductForm>();
+            var items = new List<DosageForm>();
 
             string commandText = "SELECT NOC_NUMBER, NOC_PF_DIN_PRODUCT_ID, ";
 
@@ -347,7 +357,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new ProductForm();
+                                var item = new DosageForm();
                                 item.noc_number            = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 item.noc_pf_din_product_id = dr["NOC_PF_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PF_DIN_PRODUCT_ID"]);
                                 item.noc_pf_form_name      = dr["NOC_PF_FORM_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PF_FORM_NAME"].ToString().Trim();
@@ -359,7 +369,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetAllProductForm()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllDosageForm()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -371,10 +381,10 @@ namespace notice
             return items;
         }
 
-        public List<ProductForm> GetProductFormById(int id)
+        public List<DosageForm> GetDosageFormById(int id)
         {
             // var form = new ProductForm();
-            var items = new List<ProductForm>();
+            var items = new List<DosageForm>();
 
             string commandText = "SELECT NOC_NUMBER, NOC_PF_DIN_PRODUCT_ID, ";
 
@@ -400,7 +410,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var form = new ProductForm();
+                                var form = new DosageForm();
                                 form.noc_number            = dr["NOC_NUMBER"]            == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 form.noc_pf_din_product_id = dr["NOC_PF_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PF_DIN_PRODUCT_ID"]);
                                 form.noc_pf_form_name      = dr["NOC_PF_FORM_NAME"]  == DBNull.Value ? string.Empty : dr["NOC_PF_FORM_NAME"].ToString().Trim();
@@ -411,7 +421,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetProductFormById()");
+                    string errorMessages = string.Format("DbConnection.cs - GetDosageFormById()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -532,9 +542,9 @@ namespace notice
         // BEGIN of ProductIngredient
 
 
-        public List<ProductIngredient> GetAllProductIngredient()
+        public List<MedicinalIngredient> GetAllMedicinalIngredient()
         {
-            var items = new List<ProductIngredient>();
+            var items = new List<MedicinalIngredient>();
 
             //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
             string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
@@ -560,7 +570,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new ProductIngredient();
+                                var item = new MedicinalIngredient();
                                 item.noc_number                  = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 item.noc_pi_din_product_id       = dr["NOC_PI_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_DIN_PRODUCT_ID"]);
                                 item.noc_pi_medic_ingr_name      = dr["NOC_PI_MEDIC_INGR_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PI_MEDIC_INGR_NAME"].ToString().Trim();
@@ -576,7 +586,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetAllProductIngredient()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllMedicinalIngredient()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally
@@ -588,10 +598,10 @@ namespace notice
             return items;
         }
 
-        public List<ProductIngredient> GetProductIngredientById(int id)
+        public List<MedicinalIngredient> GetMedicinalIngredientById(int id)
         {
             //var form = new ProductIngredient();
-            var items = new List<ProductIngredient>();
+            var items = new List<MedicinalIngredient>();
             //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
             string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
 
@@ -617,7 +627,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new ProductIngredient();
+                                var item = new MedicinalIngredient();
                                 item.noc_number                  = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
                                 item.noc_pi_din_product_id       = dr["NOC_PI_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_DIN_PRODUCT_ID"]);
                                 item.noc_pi_medic_ingr_name      = dr["NOC_PI_MEDIC_INGR_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PI_MEDIC_INGR_NAME"].ToString().Trim();
@@ -632,7 +642,7 @@ namespace notice
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetProductIngredientById()");
+                    string errorMessages = string.Format("DbConnection.cs - GetMedicinalIngredientById()");
                     ExceptionHelper.LogException(ex, errorMessages);
                 }
                 finally

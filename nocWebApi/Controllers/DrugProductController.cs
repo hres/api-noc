@@ -6,21 +6,21 @@ using System.Linq;
 
 namespace nocWebApi.Controllers
 {
-    public class BrandController : ApiController
+    public class DrugProductController : ApiController
     {
-        static readonly IBrandRepository databasePlaceholder = new BrandRepository();
+        static readonly IDrugProductRepository databasePlaceholder = new DrugProductRepository();
 
-        public IEnumerable<Brand> GetAllBrand()
+        public IEnumerable<DrugProduct> GetAllBrand()
         {
 
             return databasePlaceholder.GetAll();
         }
 
 
-        public IEnumerable<Brand> GetBrandByID(int id)
+        public IEnumerable<DrugProduct> GetBrandByID(int id)
         {
             //Brand brand = databasePlaceholder.Get(id);
-            IEnumerable <Brand> brandList= databasePlaceholder.Get(id);
+            IEnumerable <DrugProduct> brandList= databasePlaceholder.Get(id);
             //if (brandList.Count() == 0)
             //{
             //    throw new HttpResponseException(HttpStatusCode.NotFound);

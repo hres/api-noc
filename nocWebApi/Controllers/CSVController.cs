@@ -34,8 +34,8 @@ namespace nocWebApi.Controllerss
 
             switch (dataType)
             {
-                case "brand":
-                    var brand = dbConnection.GetAllBrand().ToList();
+                case "drugProduct":
+                    var brand = dbConnection.GetAllDrugProduct().ToList();
                     if (brand.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(brand);
@@ -52,26 +52,26 @@ namespace nocWebApi.Controllerss
                     }
                     break;
 
-                case "product":
-                    var product = dbConnection.GetAllProduct().ToList();
-                    if (product.Count > 0)
+                //case "product":
+                //    var product = dbConnection.GetAllProduct().ToList();
+                //    if (product.Count > 0)
+                //    {
+                //        json = JsonConvert.SerializeObject(product);
+
+                //    }
+                //    break;
+
+                case "dosageForm":
+                    var dosageForm = dbConnection.GetAllDosageForm().ToList();
+                    if (dosageForm.Count > 0)
                     {
-                        json = JsonConvert.SerializeObject(product);
+                        json = JsonConvert.SerializeObject(dosageForm);
 
                     }
                     break;
 
-                case "productForm":
-                    var productForm = dbConnection.GetAllProductForm().ToList();
-                    if (productForm.Count > 0)
-                    {
-                        json = JsonConvert.SerializeObject(productForm);
-
-                    }
-                    break;
-
-                case "productIngredient":
-                    var productIngredient = dbConnection.GetAllProductIngredient().ToList();
+                case "medicinalIngredient":
+                    var productIngredient = dbConnection.GetAllMedicinalIngredient().ToList();
                     if (productIngredient.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(productIngredient);
@@ -79,11 +79,11 @@ namespace nocWebApi.Controllerss
                     }
                     break;
 
-                case "productRoute":
-                    var productRoute = dbConnection.GetAllProductRoute().ToList();
-                    if (productRoute.Count > 0)
+                case "route":
+                    var route = dbConnection.GetAllRoute().ToList();
+                    if (route.Count > 0)
                     {
-                        json = JsonConvert.SerializeObject(productRoute);
+                        json = JsonConvert.SerializeObject(route);
 
                     }
                     break;
