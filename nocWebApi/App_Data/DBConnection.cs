@@ -95,10 +95,11 @@ namespace notice
             //string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_BRAND WHERE NOC_NUMBER = " + id;
             string commandText = "SELECT A.NOC_DP_DIN_PRODUCT_ID, A.NOC_DP_DIN, B.* FROM QRY_NOC_DIN_PRODUCT A, QRY_NOC_BRAND B";
             commandText += " WHERE A.NOC_DP_BRAND_ID = B.NOC_BR_BRAND_ID AND A.NOC_NUMBER = B.NOC_NUMBER";
-            commandText += " AND B.NOC_NUMBER = " + id;
+            commandText += " AND B.NOC_NUMBER = :id ";
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -287,11 +288,12 @@ namespace notice
                 commandText += " NOC_PR_ROUTE_ENG_DESC AS NOC_PR_ROUTE";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_PRODUCT_ROUTE";
-            commandText += " WHERE NOC_NUMBER = " + id;
+            commandText += " WHERE NOC_NUMBER = :id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -396,11 +398,12 @@ namespace notice
                 commandText += " NOC_PF_FORM_ENG_NAME AS NOC_PF_FORM_NAME";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_PRODUCT_FORM";
-            commandText += " WHERE NOC_NUMBER = " + id;
+            commandText += " WHERE NOC_NUMBER = :id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -502,11 +505,12 @@ namespace notice
                 commandText += " VET_SPECIES_DESC AS VET_SPECIES_DESC";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_VET_SPECIES";
-            commandText += " WHERE NOC_NUMBER = " + id;
+            commandText += " WHERE NOC_NUMBER = :id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -613,11 +617,12 @@ namespace notice
                 commandText += " NOC_PI_MEDIC_INGR_ENG_NAME AS NOC_PI_MEDIC_INGR_NAME";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_PRODUCT_INGREDIENT";
-            commandText += " WHERE NOC_NUMBER = " + id;
+            commandText += " WHERE NOC_NUMBER = :id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -810,11 +815,12 @@ namespace notice
                 commandText += "NOC_PM_ENGLISH_FNAME AS NOC_PM_FNAME";
             }
             commandText += " FROM NOC_ONLINE_OWNER.QRY_NOC_MAIN";
-            commandText += " WHERE NOC_NUMBER = " + id;
+            commandText += " WHERE NOC_NUMBER = :id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
