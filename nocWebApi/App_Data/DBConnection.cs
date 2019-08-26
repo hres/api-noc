@@ -227,7 +227,7 @@ namespace notice
             var items = new List<Route>();
             string commandText = "SELECT NOC_NUMBER, NOC_PR_DIN_PRODUCT_ID, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PR_ROUTE_FR_DESC AS NOC_PR_ROUTE";
             }
@@ -280,7 +280,7 @@ namespace notice
             //ORIGINAL - string commandText = "SELECT * FROM NOC_ONLINE_OWNER.QRY_NOC_PRODUCT_ROUTE WHERE NOC_DP_DIN_PRODUCT_ID = " + id;
             string commandText = "SELECT NOC_NUMBER, NOC_PR_DIN_PRODUCT_ID, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PR_ROUTE_FR_DESC AS NOC_PR_ROUTE";
             }
@@ -337,7 +337,7 @@ namespace notice
 
             string commandText = "SELECT NOC_NUMBER, NOC_PF_DIN_PRODUCT_ID, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PF_FORM_FR_NAME AS NOC_PF_FORM_NAME";
             }
@@ -390,7 +390,7 @@ namespace notice
 
             string commandText = "SELECT NOC_NUMBER, NOC_PF_DIN_PRODUCT_ID, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PF_FORM_FR_NAME AS NOC_PF_FORM_NAME";
             }
@@ -445,7 +445,7 @@ namespace notice
             
             string commandText = "SELECT NOC_NUMBER, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " VET_SPECIES_FR_DESC AS VET_SPECIES_DESC";
             }
@@ -497,7 +497,7 @@ namespace notice
 
             string commandText = "SELECT NOC_NUMBER, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " VET_SPECIES_FR_DESC AS VET_SPECIES_DESC";
             }
@@ -553,7 +553,7 @@ namespace notice
             //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
             string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PI_MEDIC_INGR_FR_NAME AS NOC_PI_MEDIC_INGR_NAME";
             }
@@ -609,7 +609,7 @@ namespace notice
             //string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, NOC_PI_BASE, ";
             string commandText = "SELECT NOC_NUMBER, NOC_PI_DIN_PRODUCT_ID, NOC_PI_STRENGTH, NOC_PI_UNIT, NOC_PI_BASIC_UNIT, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += " NOC_PI_MEDIC_INGR_FR_NAME AS NOC_PI_MEDIC_INGR_NAME";
             }
@@ -666,7 +666,7 @@ namespace notice
             string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_SUBMISSION_NUMBER, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_FILE_NUMBER, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_SCANNED_PAGE, NOC_NOTES_ENTRY_DATE, NOC_LAST_UPDATE_DATE, NOC_ENTRY_DATE, ";
             //string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_LAST_UPDATE_DATE, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += "NOC_CRP_COUNTRY_FR_NAME AS NOC_CRP_COUNTRY_NAME, ";
                 commandText += "NOC_QN_FRENCH_FNAME AS NOC_QN_FNAME, ";
@@ -776,7 +776,7 @@ namespace notice
             //string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_SUBMISSION_NUMBER, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_FILE_NUMBER, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_SCANNED_PAGE, NOC_NOTES_ENTRY_DATE, NOC_LAST_UPDATE_DATE, NOC_ENTRY_DATE, ";
             string commandText = "SELECT NOC_NUMBER, NOC_DATE, NOC_MANUFACTURER_NAME, NOC_STATUS_WITH_CONDITIONS, NOC_IS_SUPPLIMENT, NOC_IS_ADMIN, NOC_CRP_PRODUCT_NAME, NOC_CRP_COMPANY_NAME, NOC_ACTIVE_STATUS, NOC_LAST_UPDATE_DATE, ";
 
-            if (this.Lang.Equals("fr"))
+            if (this.Lang != null && this.Lang.Equals("fr"))
             {
                 commandText += "NOC_CRP_COUNTRY_FR_NAME AS NOC_CRP_COUNTRY_NAME, ";
                 commandText += "NOC_QN_FRENCH_FNAME AS NOC_QN_FNAME, ";
