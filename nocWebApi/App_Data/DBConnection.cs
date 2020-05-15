@@ -574,16 +574,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new MedicinalIngredient();
-                                item.noc_number                  = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
-                                item.noc_pi_din_product_id       = dr["NOC_PI_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_DIN_PRODUCT_ID"]);
-                                item.noc_pi_medic_ingr_name      = dr["NOC_PI_MEDIC_INGR_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PI_MEDIC_INGR_NAME"].ToString().Trim();
-                                item.noc_pi_strength             = dr["NOC_PI_STRENGTH"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_STRENGTH"]);
-                                item.noc_pi_unit                 = dr["NOC_PI_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_UNIT"].ToString().Trim();
-                                item.noc_pi_basic_unit           = dr["NOC_PI_BASIC_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASIC_UNIT"].ToString().Trim();
-                                //item.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
-
-                                items.Add(item);
+                                items.Add(MedicinalIngredientFactory(dr));
                             }
                         }
                     }
@@ -632,15 +623,7 @@ namespace notice
                         {
                             while (dr.Read())
                             {
-                                var item = new MedicinalIngredient();
-                                item.noc_number                  = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
-                                item.noc_pi_din_product_id       = dr["NOC_PI_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_DIN_PRODUCT_ID"]);
-                                item.noc_pi_medic_ingr_name      = dr["NOC_PI_MEDIC_INGR_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PI_MEDIC_INGR_NAME"].ToString().Trim();
-                                item.noc_pi_strength             = dr["NOC_PI_STRENGTH"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_STRENGTH"]);
-                                item.noc_pi_unit                 = dr["NOC_PI_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_UNIT"].ToString().Trim();
-                                item.noc_pi_basic_unit           = dr["NOC_PI_BASIC_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASIC_UNIT"].ToString().Trim();
-                                //form.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
-                                items.Add(item);
+                                items.Add(MedicinalIngredientFactory(dr));
                             }
                         }
                     }
@@ -658,7 +641,21 @@ namespace notice
             }
             return items;
         }// END of ProductIngredient.
-         // BEGIN of NoticeOfComplianceMain
+
+        private MedicinalIngredient MedicinalIngredientFactory(OracleDataReader dr)
+        {
+            var item = new MedicinalIngredient();
+            item.noc_number = dr["NOC_NUMBER"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_NUMBER"]);
+            item.noc_pi_din_product_id = dr["NOC_PI_DIN_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NOC_PI_DIN_PRODUCT_ID"]);
+            item.noc_pi_medic_ingr_name = dr["NOC_PI_MEDIC_INGR_NAME"] == DBNull.Value ? string.Empty : dr["NOC_PI_MEDIC_INGR_NAME"].ToString().Trim();
+            item.noc_pi_strength = dr["NOC_PI_STRENGTH"] == DBNull.Value ? 0 : Convert.ToDouble(dr["NOC_PI_STRENGTH"]);
+            item.noc_pi_unit = dr["NOC_PI_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_UNIT"].ToString().Trim();
+            item.noc_pi_basic_unit = dr["NOC_PI_BASIC_UNIT"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASIC_UNIT"].ToString().Trim();
+            //item.noc_pi_base                 = dr["NOC_PI_BASE"] == DBNull.Value ? string.Empty : dr["NOC_PI_BASE"].ToString().Trim();
+
+            return item;
+        }
+        // BEGIN of NoticeOfComplianceMain
         public List<NoticeOfComplianceMain> GetAllNoticeOfComplianceMain()
         {
             var items = new List<NoticeOfComplianceMain>();
